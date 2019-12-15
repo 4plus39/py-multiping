@@ -20,6 +20,10 @@ def job(num, hostname):
     response = os.system("ping -i 1 " + hostname)
 
 def input(iplist):
+    if len(sys.argv) == 1:
+        print(" Please enter at least one IP address")
+        exit()
+    
     for i in range(1,len(sys.argv)):
         ip = check(sys.argv[i])
         iplist.append(ip)
@@ -48,7 +52,6 @@ while True:
     print('---------------------------------------------------------------')
     time.sleep(1)
     
-
     
     for i in range(len(iplist)):
         if threads[i].is_alive():
