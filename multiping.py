@@ -14,7 +14,6 @@ class Ping:
         while self._running:
             pass
 
-
 # 子執行緒的工作函數
 def job(num, hostname):
     response = os.system("ping -i 1 " + hostname)
@@ -22,7 +21,7 @@ def job(num, hostname):
 def input(iplist):
     if len(sys.argv) == 1:
         print(" Please enter at least one IP address")
-        exit()
+        sys.exit()
     
     for i in range(1,len(sys.argv)):
         ip = check(sys.argv[i])
@@ -36,12 +35,13 @@ def check(str_ip):
             exit()
     return str_ip
     
-# 建立 n 個子執行緒
+
 threads = []
 iplist = []
 
 input(iplist)
 
+# 建立 n 個子執行緒
 for i in range(len(iplist)):
     threads.append(threading.Thread(target = job, args = (i, iplist[i])))
     threads[i].start()
@@ -57,7 +57,7 @@ while True:
         if threads[i].is_alive():
             break
 
-        exit()
+        sys.exit()
 
 # 等待所有子執行緒結束
 for i in range(len(iplist)):
