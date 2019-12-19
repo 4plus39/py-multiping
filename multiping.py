@@ -72,7 +72,7 @@ def help():
     print("operations:")
     print("    multiping [-h help]")
     print("    multiping [-i ip_addr] [ip_address1 ip_address2 ip_address3...]")
-    print("    multiping [-s series]  [ip_address1 ip_address2]")
+    print("    multiping [-r range]  [ip_address1 ip_address2]")
     print("    multiping [-f file]    [None. Default file is 'ip_list.txt']\n")
 
 
@@ -82,7 +82,7 @@ if len(sys.argv) == 1:
     sys.exit()
 elif sys.argv[1] == '-i':
     iplst = arg_ip_list()
-elif sys.argv[1] == '-c':
+elif sys.argv[1] == '-r':
     iplst = arg_ip_2()
 elif sys.argv[1] == '-f':
     iplst = ip_from_file()
@@ -90,7 +90,7 @@ elif sys.argv[1] == '-h':
     help()
     sys.exit()
 else:
-    print(" multiping: invalid option \'%s\'" %(sys.argv[1]))
+    print(" multiping: invalid option '%s'" %(sys.argv[1]))
     sys.exit()
 
 # 建立 n 個子執行緒
